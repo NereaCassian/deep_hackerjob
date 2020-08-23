@@ -1,13 +1,10 @@
-# UTK Hacker Job
+# Deep Hacker Job
 
-by **utku#9999**
+by **Nerea_Cassian**
 
 This is a hacker job, which has level system in it. As you successfuly complete hack you gain exp, and when you reach the level's limit you level up.
 
 Each level has more hack options.
-
-**If you encounter any issue (which you possibly will, because this was made for a specific server by request) please contact me, I will fix it fast.**
-**Don't hesitate to directly message me if you need something.**
 
 Players must have "hacker" job to access the menu.
 
