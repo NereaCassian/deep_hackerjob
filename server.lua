@@ -3,7 +3,7 @@ TriggerEvent("esx:getSharedObject", function(obj) ESX = obj end)
 
 Hackers = {}
 
-UTK = {
+deep = {
     kimlik = function(player, source)
         if player ~= nil then
             local dat = MySQL.Sync.fetchAll("SELECT firstname, lastname FROM users WHERE identifier = @identifier", {["@identifier"] = player.identifier})
@@ -80,7 +80,7 @@ function CheckUser(identifier)
     end
 end
 
-ESX.RegisterServerCallback("utk_hacker:getPlayerLevel", function(source, cb)
+ESX.RegisterServerCallback("deep_hacker:getPlayerLevel", function(source, cb)
     local xPlayer = ESX.GetPlayerFromId(source)
     local todaysHacks = nil
     local result = MySQL.Sync.fetchAll("SELECT * FROM hackerlevels WHERE identifier = @identifier", {
@@ -111,7 +111,7 @@ ESX.RegisterServerCallback("utk_hacker:getPlayerLevel", function(source, cb)
     end
 end)
 
---[[ESX.RegisterServerCallback("utk_hacker:checkItem", function(source, cb)
+--[[ESX.RegisterServerCallback("deep_hacker:checkItem", function(source, cb)
     local xPlayer = ESX.GetPlayerFromId(source)
     local item = xPlayer.getInventoryItem("phone") -- don't forget to change item name!!!
 
@@ -122,8 +122,8 @@ end)
     end
 end)]]
 
-RegisterServerEvent("utk_hacker:expUpdate")
-AddEventHandler("utk_hacker:expUpdate", function(level, exp)
+RegisterServerEvent("deep_hacker:expUpdate")
+AddEventHandler("deep_hacker:expUpdate", function(level, exp)
     local xPlayer = ESX.GetPlayerFromId(source)
     local data = MySQL.Sync.fetchAll("SELECT level, exp FROM hackerlevels WHERE identifier = @identifier", {
         ["@identifier"] = xPlayer.identifier
@@ -142,7 +142,7 @@ AddEventHandler("utk_hacker:expUpdate", function(level, exp)
                 ["@exp"] = ((data[1].exp + exp) - LevelConfig[level].total)
             })
             xPlayer.setJob("hacker", level + 1)
-            TriggerClientEvent("utk_hacker:ensureJob", xPlayer.source, "hacker", level + 1)
+            TriggerClientEvent("deep_hacker:ensureJob", xPlayer.source, "hacker", level + 1)
             TriggerClientEvent("mythic_notify:client:SendAlert", xPlayer.source, {type = "success", text = "Level up! "..(level+1), lenght = 6000})
         else
             MySQL.Async.execute("UPDATE hackerlevels SET exp = @exp WHERE identifier = @identifier", {
@@ -158,8 +158,8 @@ AddEventHandler("utk_hacker:expUpdate", function(level, exp)
     end
 end)
 
-RegisterServerEvent("utk_hacker:lostLife")
-AddEventHandler("utk_hacker:lostLife", function()
+RegisterServerEvent("deep_hacker:lostLife")
+AddEventHandler("deep_hacker:lostLife", function()
     local xPlayer = ESX.GetPlayerFromId(source)
     for i = 1, #Hackers, 1 do
         if Hackers[i].identifier == xPlayer.identifier then
@@ -168,8 +168,8 @@ AddEventHandler("utk_hacker:lostLife", function()
     end
 end)
 
-RegisterServerEvent("utk_hacker:giveMoney")
-AddEventHandler("utk_hacker:giveMoney", function(reward)
+RegisterServerEvent("deep_hacker:giveMoney")
+AddEventHandler("deep_hacker:giveMoney", function(reward)
     local xPlayer = ESX.GetPlayerFromId(source)
 
     if RewardType == "black_money" or RewardType == "bank" then
@@ -179,8 +179,8 @@ AddEventHandler("utk_hacker:giveMoney", function(reward)
     end
 end)
 
-RegisterServerEvent("utk_hacker:phoneNumber")
-AddEventHandler("utk_hacker:phoneNumber", function(number, func)
+RegisterServerEvent("deep_hacker:phoneNumber")
+AddEventHandler("deep_hacker:phoneNumber", function(number, func)
     local _source = source
     local result = MySQL.Sync.fetchAll("SELECT identifier FROM users WHERE phone_number = @number", {
         ["@number"] = number
@@ -188,14 +188,14 @@ AddEventHandler("utk_hacker:phoneNumber", function(number, func)
 
     if result ~= nil then
         local target = ESX.GetPlayerFromIdentifier(result[1].identifier)
-        local callback = UTK[func](target, _source)
+        local callback = deep[func](target, _source)
 
-        TriggerClientEvent("utk_hacker:phoneNumber", callback.source, callback)
+        TriggerClientEvent("deep_hacker:phoneNumber", callback.source, callback)
     end
 end)
 
-RegisterServerEvent("utk_hacker:twitter")
-AddEventHandler("utk_hacker:twitter", function(username)
+RegisterServerEvent("deep_hacker:twitter")
+AddEventHandler("deep_hacker:twitter", function(username)
     local _source = source
     local result = MySQL.Sync.fetchAll("SELECT password FROM twitter_accounts WHERE username = @username", {
         ["@username"] = username
@@ -208,8 +208,8 @@ AddEventHandler("utk_hacker:twitter", function(username)
     end
 end)
 
-RegisterServerEvent("utk_hacker:policeCoords")
-AddEventHandler("utk_hacker:policeCoords", function(method)
+RegisterServerEvent("deep_hacker:policeCoords")
+AddEventHandler("deep_hacker:policeCoords", function(method)
     local _source = source
     local cops = {}
     local players = ESX.GetPlayers()
@@ -221,10 +221,10 @@ AddEventHandler("utk_hacker:policeCoords", function(method)
             table.insert(cops, temp.source)
         end
     end
-    TriggerClientEvent("utk_hacker:policeCoords", _source, cops, method)
+    TriggerClientEvent("deep_hacker:policeCoords", _source, cops, method)
 end)
 
-RegisterServerEvent("utk_hacker:sendPolice")
-AddEventHandler("utk_hacker:sendPolice", function(coords)
-    TriggerClientEvent("utk_hacker:sendPolice", -1, coords)
+RegisterServerEvent("deep_hacker:sendPolice")
+AddEventHandler("deep_hacker:sendPolice", function(coords)
+    TriggerClientEvent("deep_hacker:sendPolice", -1, coords)
 end)

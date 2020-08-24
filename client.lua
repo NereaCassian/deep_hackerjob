@@ -121,7 +121,7 @@ end)
 
 function CheckLevel()
     InUse = true
-    ESX.TriggerServerCallback("utk_hacker:getPlayerLevel", function(level, exp, todaysHacks)
+    ESX.TriggerServerCallback("deep_hacker:getPlayerLevel", function(level, exp, todaysHacks)
         OpenHackMenu(level, exp, todaysHacks)
     end)
     InUse = false
@@ -136,7 +136,7 @@ function OpenHackMenu(level, exp, todaysHacks)
         elements = LevelData[level]
     }, function(data, menu)
         local selection = data.current
-        --ESX.TriggerServerCallback("utk_hacker:checkItem", function(result) -- required item check
+        --ESX.TriggerServerCallback("deep_hacker:checkItem", function(result) -- required item check
             --if result == true then
                 if selection ~= nil then
                     if todaysHacks > 0 then
@@ -176,8 +176,8 @@ function RandomHack(level, exp, diff)
             ClearPedTasks(ped)
             FreezeEntityPosition(ped, false)
             exports["mythic_notify"]:SendAlert("success", "Success. You stole "..reward.."$", 5000)
-            TriggerServerEvent("utk_hacker:giveMoney", reward)
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:giveMoney", reward)
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
         else
             doingit = false
             ClearPedTasks(ped)
@@ -212,8 +212,8 @@ function GetIdentity(level, exp, diff)
                 FreezeEntityPosition(ped, false)
                 return
             end
-            TriggerServerEvent("utk_hacker:phoneNumber", tonumber(number), "kimlik")
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:phoneNumber", tonumber(number), "kimlik")
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
             doingit = false
             ClearPedTasks(ped)
             FreezeEntityPosition(ped, false)
@@ -251,8 +251,8 @@ function Location(level, exp, diff)
                 FreezeEntityPosition(ped, false)
                 return
             end
-            TriggerServerEvent("utk_hacker:phoneNumber", tonumber(number), "lokasyon")
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:phoneNumber", tonumber(number), "lokasyon")
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
             doingit = false
             ClearPedTasks(ped)
             FreezeEntityPosition(ped, false)
@@ -290,8 +290,8 @@ function DropWalkie(level, exp, diff)
                 FreezeEntityPosition(ped, false)
                 return
             end
-            TriggerServerEvent("utk_hacker:phoneNumber", tonumber(number), "dropWalkie")
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:phoneNumber", tonumber(number), "dropWalkie")
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
             exports["mythic_notify"]:SendAlert("success", "Person dropped from thier radio channel.", 5000)
             doingit = false
             ClearPedTasks(ped)
@@ -340,7 +340,7 @@ function EnterWalkie(level, exp, diff)
             exports.tokovoip_script:setPlayerData(name, "radio:channel", tonumber(number), true)
             exports.tokovoip_script:addPlayerToRadio(tonumber(number))
             exports["mythic_notify"]:SendAlert("success", "You have joined the police channel.", 5000)
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
             doingit = false
             ClearPedTasks(ped)
             FreezeEntityPosition(ped, false)
@@ -378,8 +378,8 @@ function BankRob(level, exp, diff)
                 FreezeEntityPosition(ped, false)
                 return
             end
-            TriggerServerEvent("utk_hacker:phoneNumber", tonumber(number), "bankaSoy")
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:phoneNumber", tonumber(number), "bankaSoy")
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
             doingit = false
             ClearPedTasks(ped)
             FreezeEntityPosition(ped, false)
@@ -417,8 +417,8 @@ function Twitter(level, exp, diff)
                 FreezeEntityPosition(ped, false)
                 return
             end
-            TriggerServerEvent("utk_hacker:twitter", tostring(username))
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:twitter", tostring(username))
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
             doingit = false
             ClearPedTasks(ped)
             FreezeEntityPosition(ped, false)
@@ -452,7 +452,7 @@ function EngineBreak(level, exp, diff)
                 end
                 if Mhack == true then
                     SetVehicleEngineHealth(vehicle, 100.0)
-                    TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+                    TriggerServerEvent("deep_hacker:expUpdate", level, exp)
                     exports["mythic_notify"]:SendAlert("success", "Vehicle engine disabled.", 5000)
                     doingit = false
                     ClearPedTasks(ped)
@@ -493,7 +493,7 @@ function VehUnlock(level, exp, diff)
                 end
                 if Mhack == true then
                     SetVehicleDoorsLocked(vehicle, 0)
-                    TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+                    TriggerServerEvent("deep_hacker:expUpdate", level, exp)
                     exports["mythic_notify"]:SendAlert("success", "Vehicle unlocked.", 5000)
                     doingit = false
                     ClearPedTasks(ped)
@@ -535,7 +535,7 @@ function VehUpgrade(level, exp, diff)
                 if Mhack == true then
                     local old = GetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDriveForce")
                     SetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDriveForce", old + old * (20 / 100))
-                    TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+                    TriggerServerEvent("deep_hacker:expUpdate", level, exp)
                     exports["mythic_notify"]:SendAlert("success", "Vehicle software upgraded.", 5000)
                     doingit = false
                     ClearPedTasks(ped)
@@ -571,8 +571,8 @@ function ActivePolice(level, exp, diff)
             Citizen.Wait(100)
         end
         if Mhack == true then
-            TriggerServerEvent("utk_hacker:policeCoords", 1)
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:policeCoords", 1)
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
             doingit = false
             ClearPedTasks(ped)
             FreezeEntityPosition(ped, false)
@@ -601,8 +601,8 @@ function Wallhack(level, exp, diff)
             Citizen.Wait(100)
         end
         if Mhack == true then
-            TriggerServerEvent("utk_hacker:policeCoords", 2)
-            TriggerServerEvent("utk_hacker:expUpdate", level, exp)
+            TriggerServerEvent("deep_hacker:policeCoords", 2)
+            TriggerServerEvent("deep_hacker:expUpdate", level, exp)
             doingit = false
             ClearPedTasks(ped)
             FreezeEntityPosition(ped, false)
@@ -620,13 +620,13 @@ function PhoneHacking(output, time)
     Mhack = output
     if output == false then
         if FailDecrease then
-            TriggerServerEvent("utk_hacker:lostLife")
+            TriggerServerEvent("deep_hacker:lostLife")
         end
         local rnd = math.random(0, 100)
 
         if rnd <= FailNotify then
 
-            TriggerServerEvent("utk_hacker:sendPolice", GetEntityCoords(PlayerPedId()))
+            TriggerServerEvent("deep_hacker:sendPolice", GetEntityCoords(PlayerPedId()))
             if InformPlayer then
                 exports["mythic_notify"]:SendAlert("error", "Police informed.", 8000)
             end
@@ -636,7 +636,7 @@ function PhoneHacking(output, time)
 
         if rnd <= SuccessNotify then
 
-            TriggerServerEvent("utk_hacker:sendPolice", GetEntityCoords(PlayerPedId()))
+            TriggerServerEvent("deep_hacker:sendPolice", GetEntityCoords(PlayerPedId()))
             if InformPlayer then
                 exports["mythic_notify"]:SendAlert("error", "Police informed.", 8000)
             end
@@ -667,14 +667,14 @@ AddEventHandler('esx:setJob', function(job)
 	PlayerData.job = job
 end)
 
-RegisterNetEvent("utk_hacker:ensureJob")
-AddEventHandler("utk_hacker:ensureJob", function(name, grade)
+RegisterNetEvent("deep_hacker:ensureJob")
+AddEventHandler("deep_hacker:ensureJob", function(name, grade)
     PlayerData.job.name = name
     PlayerData.job.grade = grade
 end)
 
-RegisterNetEvent("utk_hacker:phoneNumber")
-AddEventHandler("utk_hacker:phoneNumber", function(data)
+RegisterNetEvent("deep_hacker:phoneNumber")
+AddEventHandler("deep_hacker:phoneNumber", function(data)
     if data.method == "notify" then
         exports["mythic_notify"]:SendAlert("success", data.text, 10000)
     elseif data.method == "lokasyon" then
@@ -703,8 +703,8 @@ AddEventHandler("utk_hacker:phoneNumber", function(data)
     end
 end)
 
-RegisterNetEvent("utk_hacker:policeCoords")
-AddEventHandler("utk_hacker:policeCoords", function(cops, method)
+RegisterNetEvent("deep_hacker:policeCoords")
+AddEventHandler("deep_hacker:policeCoords", function(cops, method)
     if method == 2 then
         for i = 1, #blips, 1 do
             RemoveBlip(blips[i])
@@ -739,8 +739,8 @@ AddEventHandler("utk_hacker:policeCoords", function(cops, method)
     end
 end)
 
-RegisterNetEvent("utk_hacker:sendPolice")
-AddEventHandler("utk_hacker:sendPolice", function(coords)
+RegisterNetEvent("deep_hacker:sendPolice")
+AddEventHandler("deep_hacker:sendPolice", function(coords)
     local jobname = ESX.GetPlayerData().job.name
 
     if jobname == "police" then

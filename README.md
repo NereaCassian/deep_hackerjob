@@ -1,4 +1,4 @@
-# Deep Hacker Job [STANDALONE]
+# Deep Hacker Job
 
 by **Nerea_Cassian**
 
@@ -14,7 +14,7 @@ Players must have "hacker" job to access the menu.
 
 - Second, run sql query
 
-- Last, start utk_hacker from server.cfg
+- Last, start deep_hacker from server.cfg
 
 ## Configuration
 
@@ -30,7 +30,7 @@ In **client.lua** line 134 uncomments relevant lines, it should look like this:
 
 ```lua
 local selection = data.current
-    ESX.TriggerServerCallback("utk_hacker:checkItem", function(result) -- required item check
+    ESX.TriggerServerCallback("deep_hacker:checkItem", function(result) -- required item check
         if result == true then
             if selection ~= nil then
                 if todaysHacks > 0 then
@@ -49,7 +49,7 @@ local selection = data.current
 And in **server.lua** line 115 uncomment the whole function and change the item name to the item you want, it should look like this:
 
 ```lua
-ESX.RegisterServerCallback("utk_hacker:checkItem", function(source, cb)
+ESX.RegisterServerCallback("deep_hacker:checkItem", function(source, cb)
     local xPlayer = ESX.GetPlayerFromId(source)
     local item = xPlayer.getInventoryItem("phone")
 
