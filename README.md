@@ -1,4 +1,4 @@
-# Deep Hacker Job
+# Deep Hacker Job [STANDALONE]
 
 by **Nerea_Cassian**
 
