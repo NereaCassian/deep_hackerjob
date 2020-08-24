@@ -1,6 +1,6 @@
 # Deep Hacker Job
 
-by **Nerea_Cassian**
+by **Uknow and reworked by Nerea_Cassian**
 
 This is a hacker job, which has level system in it. As you successfuly complete hack you gain exp, and when you reach the level's limit you level up.
 
@@ -10,7 +10,9 @@ Players must have "hacker" job to access the menu.
 
 ## Install
 
-- First, make sure you have mythc_notfiy and mhacking as they are the essential for this to work
+- First, make sure you have mythc_notfi mhacking as they are the essential for this to work
+
+- (optional) some hacks require Tokovoip but it isn`t a essential required script
 
 - Second, run sql query
 
@@ -66,3 +68,5 @@ end)
 This script adds levels as job grades but giving a player grade doesn't work, it has a seperate db table. This was made this way so player can see his/her level in the top right hud. So if you want to give a player level, change the level in hacklevels.
 
 Also check for SQL stuff such as twitter hack or user name. You may have different table structure, and if you do it shouldn't be hard to edit according to your table. If you don't know how to or couldn't get it working contact me, I will gladly help you out.
+
+I basically reworked a broken hacker job script than pass thought my hands I don't know the original code writer because the guy who send it to me renamed the script with his name and it hasn't comments, so all thanks to him because I just corrected the mistakes caused by bad made modifications and made the SQL file. I hope you enjoy it and I will ask any question, Thanks ^^
